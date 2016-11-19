@@ -31,6 +31,7 @@ $:.push(File.join(File.dirname(__FILE__),'bin'))
 require 'sketchup.rb'
 
 path=File.join(File.dirname(__FILE__),'bin')
+ENV["path"] = ENV["path"] + ";" + path   #To avoid the "error 126" when loading the "required" .so modules
 
 require 'yafqt'
 require 'yafaray_v3_interface_ruby'
