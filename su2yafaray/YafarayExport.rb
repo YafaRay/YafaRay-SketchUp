@@ -19,11 +19,11 @@ end
 
 
 def initialize(yi)
-	plugins_path=File.join(File.dirname(__FILE__),'bin','plugins')
+	plugins_path=File.join(File.dirname(__FILE__),'bin','yafaray-plugins')
 	p plugins_path
 	yi.loadPlugins(plugins_path)
 	yi.startScene(0)
-	yi.setInputGamma(1, true)
+	##FIXME DAVID yi.setInputGamma(1, true)
 end	
 
 def export_render_params(yi)
@@ -49,13 +49,12 @@ def export_render_params(yi)
 		yi.paramsSetInt("threads",Integer(@ys.threads))
 	end
 	
-	imageMem = Yafrayinterface.new_floatArray(Integer(@ys.width) * Integer(@ys.height) * 4)
-	#co = yafrayinterface.memoryIO_t(400, 400, imageMem)
+	imageMem = Yafaray_v3_interface_ruby.new_floatArray(Integer(@ys.width) * Integer(@ys.height) * 4)
 	yi.paramsSetInt("width", Integer(@ys.width))
 	yi.paramsSetInt("height", Integer(@ys.height))
 
 	yi.paramsSetBool("z_channel", @ys.z_channel)
-	yi.setDrawParams(false)
+	## FIXME DAVID yi.setDrawParams(false)
 end
 
 def collect_faces
@@ -598,7 +597,7 @@ def export_face(yi,mat,fm_mat)
 		
 	  	polymesh=((face_mat_dir==true) ? face.mesh(5) : face.mesh(6))
 		trans_inverse = trans.inverse
-		default_mat.push(face_mat_dir ? face.material==nil:face.back_material==nil)
+		###FIXME DAVID default_mat.push(face_mat_dir ? face.material==nil:face.back_material==nil)
 		distorted_uv.push(uvHelp)
 		mat_dir.push(face_mat_dir)
 

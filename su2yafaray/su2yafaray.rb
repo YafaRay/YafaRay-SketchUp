@@ -25,154 +25,15 @@
 # Type         : Exporter
 # Version      : 0.1 alpha
 
-module SU2YAFARAY
 
-######test if user is on a mac platform
-def SU2YAFARAY.on_mac?
-
-return (Object::RUBY_PLATFORM =~ /mswin/i) ? false : ((Object::RUBY_PLATFORM =~ /darwin/i) ? true : :other)
-
-end
-
-#######gets the yafaray path from the windows registry
-def SU2YAFARAY.get_yafaray_path_from_registry
-
-begin
-	Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\YafRay Team\YafaRay for Sketchup') do |reg|
-	#Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\YafRay Team\YafaRay') do |reg|
-		reg_typ, reg_val = reg.read('InstallDir')
-	    return reg_val
-	end
-rescue
-	raise
-	#return nil
-end
-	
-end
-
-end
- 
 $:.push(File.join(File.dirname(__FILE__)))  #add the su2yafaray folder to the ruby library search list
 $:.push(File.join(File.dirname(__FILE__),'bin'))
 require 'sketchup.rb'
-unless SU2YAFARAY.on_mac?
-	require 'Win32API'
-	require 'registry'
-end
 
-#path=SU2YAFARAY.get_yafaray_path_from_registry
 path=File.join(File.dirname(__FILE__),'bin')
 
-LoadLibrary = Win32API.new("kernel32","LoadLibrary",["P"],"I")
- 
- mingw=false
- if not mingw
- #abc
- dllname=path+'/zlib1.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/Half.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/iconv.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/Iex.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/IlmImf.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/IlmThread.dll'
- LoadLibrary.call(dllname)
- 
- #dllname=path+'/jpeg62.dll'
- #LoadLibrary.call(dllname)
- 
-  dllname=path+'/libfreetype-6.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/libpng3.dll'
- LoadLibrary.call(dllname) 
- 
- dllname=path+ '/libtiff3.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+ '/libxml2.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/pthreadVC2.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/QtCore4.dll'
- LoadLibrary.call(dllname)
- dllname=path+'/QtGui4.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/yafaraycore.dll'
- LoadLibrary.call(dllname)
- dllname=path+'/yafarayplugin.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/yafarayqt.dll'
- LoadLibrary.call(dllname)   
- 
- else
-  # dllname=path+'/zlib1.dll'
- # LoadLibrary.call(dllname)
- 
- dllname=path+'/mingwm10.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/Half.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/iconv.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/Iex.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/IlmImf.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/IlmThread.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/jpeg62.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/libfreetype-6.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/libpng3.dll'
- LoadLibrary.call(dllname) 
- 
- dllname=path+ '/libtiff-3.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+ '/libxml2.dll'
- LoadLibrary.call(dllname)
- 
-  dllname=path+'/pthreadVC2.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/QtCore4.dll'
- LoadLibrary.call(dllname)
- dllname=path+'/QtGui4.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/libyafaraycore.dll'
- LoadLibrary.call(dllname)
- dllname=path+'/libyafarayplugin.dll'
- LoadLibrary.call(dllname)
- 
- dllname=path+'/libyafarayqt.dll'
- LoadLibrary.call(dllname)   
- end
- 
- require 'yafqt'
- require 'yafrayinterface'
+require 'yafqt'
+require 'yafaray_v3_interface_ruby'
 
 module SU2YAFARAY
 
@@ -239,8 +100,8 @@ def SU2YAFARAY.render(useXML)
 		if export_file_path
 			#if export_file_path=nil  
 			#export_file_path="C:\yafaray.xml"
-			yi=Yafrayinterface::XmlInterface_t.new
-			co=Yafrayinterface::ImageOutput_t.new
+			yi=Yafaray_v3_interface_ruby::XmlInterface_t.new
+			co=Yafaray_v3_interface_ruby::ImageOutput_t.new
 			yi.setOutfile(export_file_path)
 			
 			SU2YAFARAY.set_params(yi)
@@ -249,7 +110,7 @@ def SU2YAFARAY.render(useXML)
 			yi.clearAll()
 		end
 	else
-		yi=Yafrayinterface::YafrayInterface_t.new
+		yi=Yafaray_v3_interface_ruby::YafrayInterface_t.new
 		SU2YAFARAY.set_params(yi)
 		result=SU2YAFARAY.report_window(start_time,"Time")
 		if result==6
@@ -402,8 +263,8 @@ if( not file_loaded?(__FILE__) )
 	main_menu.add_item("About") {(SU2YAFARAY.about)}
 	toolbar = UI::Toolbar.new("Yafaray")
 	cmd_render = UI::Command.new("Render"){(SU2YAFARAY.render(false))}
-	cmd_render.small_icon = "yafray.png"
-	cmd_render.large_icon = "yafray.png"
+	cmd_render.small_icon = "yafaray-icon-small.png"
+	cmd_render.large_icon = "yafaray-icon-small.png"
 	cmd_render.tooltip = "Render with Yafaray"
 	cmd_render.menu_text = "Render"
 	cmd_render.status_bar_text = "Render with Yafaray"
