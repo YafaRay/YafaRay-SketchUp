@@ -38,6 +38,10 @@ require 'yafaray_v3_interface_ruby'
 
 module SU2YAFARAY
 
+def SU2YAFARAY.on_mac?
+	return (/darwin/ =~ RUBY_PLATFORM) != nil
+end
+
 FRONTF = "SU2YAFARAY Front Face"
 SCENE_NAME='default.xml'
 
