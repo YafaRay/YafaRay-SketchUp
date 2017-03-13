@@ -21,7 +21,7 @@ class YafarayMaterialEditor
 def initialize
 	pref_key="YafarayMaterialEditor"
 	@material_dialog=UI::WebDialog.new("YafaRay Material Editor", false,pref_key,300,500, 10,10,true)
-	@material_dialog.max_width = 1000
+	#@material_dialog.max_width = 1000
 	material_html_path = Sketchup.find_support_file "material.html" ,"Plugins/su2yafaray"
 	@material_dialog.set_file(material_html_path)
 	@material_dialog.add_action_callback("param_generate") {|dialog, params|

@@ -22,7 +22,7 @@ def initialize
 
 	pref_key="YafaraySettingsEditor"
 	@settings_dialog=UI::WebDialog.new("YafaRay Render Settings", false,pref_key,300,500, 10,10,true)
-	@settings_dialog.max_width = 1000
+	#@settings_dialog.max_width = 1000
 	setting_html_path = Sketchup.find_support_file "settings.html" ,"Plugins/su2yafaray"
 	@settings_dialog.set_file(setting_html_path)
 	@ys=YafaraySettings.new
