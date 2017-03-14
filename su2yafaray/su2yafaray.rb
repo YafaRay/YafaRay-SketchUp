@@ -16,14 +16,17 @@
 # Description  : Model exporter and material editor for Yafaray http://www.yafaray.org
 # Menu Item    : Plugins\Luxrender Exporter
 # Authors      : Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com http://exvion.ru
+#					(Original su2yafaray exporter (and most of the work) done by Exvion)
+#				 David Bluecame (updates and changes to this exporter starting 2016)
 #					Initialy based on SU exporters:
 #					SU2LUX by Alexander Smirnov, Mimmo Briganti
 #					SU2KT by Tomasz Marek, Stefan Jaensch, Tim Crandall, 
 #					SU2POV by Didier Bur and OGRE exporter by Kojack
 # Usage        : Copy script to PLUGINS folder in SketchUp folder, run SU, go to Plugins\Yafaray exporter
-# Date         : 2010-06-29
+#                (Still way behind YafaRay Core, very limited and probably buggy (pre-alpha state))
+# Date         : 2017-03-14
 # Type         : Exporter
-# Version      : 0.1 alpha
+# Version      : 3.2.0-pre-alpha
 
 
 $:.push(File.join(File.dirname(__FILE__)))  #add the su2yafaray folder to the ruby library search list
