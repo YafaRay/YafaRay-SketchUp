@@ -24,7 +24,7 @@
 #					SU2POV by Didier Bur and OGRE exporter by Kojack
 # Usage        : Copy script to PLUGINS folder in SketchUp folder, run SU, go to Plugins\Yafaray exporter
 #                (Still way behind YafaRay Core, very limited and probably buggy (pre-alpha state))
-# Date         : 2017-03-14
+# Date         : 2017-03-16
 # Type         : Exporter
 # Version      : 3.2.0-pre-alpha
 
@@ -34,7 +34,7 @@ $:.push(File.join(File.dirname(__FILE__),'bin'))
 require 'sketchup.rb'
 
 path=File.join(File.dirname(__FILE__),'bin')
-ENV["path"] = ENV["path"] + ";" + path   #To avoid the "error 126" when loading the "required" .so modules
+ENV["path"] = path + ";" + ENV["path"]  #To avoid the "error 126" when loading the "required" .so modules
 
 require 'yafqt'
 require 'yafaray_v3_interface_ruby'
