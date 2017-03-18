@@ -16,17 +16,18 @@
 # Description  : Model exporter and material editor for Yafaray http://www.yafaray.org
 # Menu Item    : Plugins\Luxrender Exporter
 # Authors      : Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com http://exvion.ru
-#					(Original su2yafaray exporter (and most of the work) done by Exvion)
+#					(Original su2yafaray exporter (and most of the work) done by Exvion until 2010)
 #				 David Bluecame (updates and changes to this exporter starting 2016)
 #					Initialy based on SU exporters:
 #					SU2LUX by Alexander Smirnov, Mimmo Briganti
 #					SU2KT by Tomasz Marek, Stefan Jaensch, Tim Crandall, 
 #					SU2POV by Didier Bur and OGRE exporter by Kojack
-# Usage        : Copy script to PLUGINS folder in SketchUp folder, run SU, go to Plugins\Yafaray exporter
-#                (Still way behind YafaRay Core, very limited and probably buggy (pre-alpha state))
-# Date         : 2017-03-16
+# Usage        : Compress su2yafaray_loader.rb and su2yafaray folder into a zip file.
+#                Then, rename extension from .zip to .rbz and install .rbz file with Sketchup Plugins Manager
+#                (Functionality way behind YafaRay Core v3.2.0, very limited and probably buggy (alpha state))
+# Date         : 2017-03-18
 # Type         : Exporter
-# Version      : 3.2.0-pre-alpha
+# Version      : 3.2.0-alpha
 
 
 $:.push(File.join(File.dirname(__FILE__)))  #add the su2yafaray folder to the ruby library search list
@@ -225,11 +226,16 @@ end
 #####################################################################
 #####################################################################
 def SU2YAFARAY.about
-	UI.messagebox("SU2Yafaray version 0.1 alpha 29th June 2010
+	UI.messagebox("SU2Yafaray version 3.2.0-alpha 2017-03-18
 SketchUp Exporter to Yafaray
-Author: Alexander Smirnov (aka Exvion)
-E-mail: exvion@gmail.com
-http://exvion.ru
+Authors: * Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com http://exvion.ru
+            (Original su2yafaray exporter (and most of the work) done by Exvion until 2010)
+         * David Bluecame (updates and changes to this exporter starting 2016)
+         * Initialy based on SU exporters:
+            - SU2LUX by Alexander Smirnov, Mimmo Briganti
+            - SU2KT by Tomasz Marek, Stefan Jaensch, Tim Crandall, 
+            - SU2POV by Didier Bur and OGRE exporter by Kojack
+
 For further information please visit
 Yafaray Website & Forum - www.yafaray.org" , MB_MULTILINE , "SU2Yafaray - Sketchup Exporter to Yafaray")
 end
