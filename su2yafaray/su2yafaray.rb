@@ -15,9 +15,9 @@
 # Name         : su2yafaray.rb
 # Description  : Model exporter and material editor for Yafaray http://www.yafaray.org
 # Menu Item    : Plugins\Luxrender Exporter
-# Authors      : Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com http://exvion.ru
+# Authors      : Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com
 #					(Original su2yafaray exporter (and most of the work) done by Exvion until 2010)
-#				 David Bluecame (updates and changes to this exporter starting 2016)
+#				 David Bluecame (updates and changes starting 2016) www.yafaray.org
 #					Initialy based on SU exporters:
 #					SU2LUX by Alexander Smirnov, Mimmo Briganti
 #					SU2KT by Tomasz Marek, Stefan Jaensch, Tim Crandall, 
@@ -228,9 +228,9 @@ end
 def SU2YAFARAY.about
 	UI.messagebox("SU2Yafaray version 3.2.0-alpha 2017-03-18
 SketchUp Exporter to Yafaray
-Authors: * Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com http://exvion.ru
+Authors: * Alexander Smirnov (aka Exvion)  e-mail: exvion@gmail.com
             (Original su2yafaray exporter (and most of the work) done by Exvion until 2010)
-         * David Bluecame (updates and changes to this exporter starting 2016)
+         * David Bluecame (updates and changes starting 2016) www.yafaray.org
          * Initialy based on SU exporters:
             - SU2LUX by Alexander Smirnov, Mimmo Briganti
             - SU2KT by Tomasz Marek, Stefan Jaensch, Tim Crandall, 
