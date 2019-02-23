@@ -24,10 +24,10 @@
 #					SU2POV by Didier Bur and OGRE exporter by Kojack
 # Usage        : Compress su2yafaray_loader.rb and su2yafaray folder into a zip file.
 #                Then, rename extension from .zip to .rbz and install .rbz file with Sketchup Plugins Manager
-#                (Functionality way behind YafaRay Core v3.2.0, very limited and probably buggy (alpha state))
-# Date         : 2017-03-18
+#                (Functionality way behind YafaRay Core v3.4.0, very limited and probably buggy (alpha state))
+# Date         : 2019-02-23
 # Type         : Exporter
-# Version      : 3.2.0-alpha
+# Version      : 3.4.0-alpha
 
 
 $:.push(File.join(File.dirname(__FILE__)))  #add the su2yafaray folder to the ruby library search list
@@ -36,6 +36,7 @@ require 'sketchup.rb'
 
 path=File.join(File.dirname(__FILE__),'bin')
 ENV["path"] = path.to_s + ";" + ENV["path"].to_s  #To avoid the "error 126" when loading the "required" .so modules
+ENV["QT_QPA_PLATFORM_PLUGIN_PATH"] = path.to_s  #To avoid the Qt5 error "This application failed to start because it could not find or load the Qt platform plugin windows". Requires qwindows.dll from Qt5 plugins/platforms in the yafaray bin folder to work
 
 require 'yafqt'
 require 'yafaray_v3_interface_ruby'
